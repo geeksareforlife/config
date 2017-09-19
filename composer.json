@@ -1,0 +1,22 @@
+{
+    "name": "geeksareforlife/config",
+    "description": "A simple configuration library",
+    "type": "library",
+    "homepage": "https://github.com/geeksareforlife/config",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Hayward",
+            "email": "jhayward1980@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+        "kherge/json": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GeeksAreForLife\\Config\\": "src/"
+        }
+    }
+}
