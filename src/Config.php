@@ -4,6 +4,12 @@ namespace GeeksAreForLife\Config;
 
 use KHerGe\JSON\JSON;
 
+/**
+ * Config
+ *
+ * The config object loads in the provided config files and provides an
+ * interface to the config values
+ */
 class Config
 {
     private $config;
@@ -14,6 +20,20 @@ class Config
     {
     }
 
+    /**
+     * Load the config and defaults file.
+     *
+     * Neither of these files have to exist!
+     * The defaults file will never be edited
+     *
+     * File format is a single json object. 
+     * keys are dot(.) seperated for easy nesting.
+     * Keys can also have a "module" that nests them in a modules object
+     * 
+     * @param  string $configFile  The local config
+     * @param  string $defaultFile Defaults
+     * @return bool
+     */
     public function load($configFile, $defaultFile)
     {
         $config = $this->readConfig($configFile);
@@ -34,11 +54,21 @@ class Config
         }
     }
 
+    /**
+     * Saves the config file
+     */
     public function save()
     {
         $this->saveFile($this->config, $this->configFile);
     }
 
+    /**
+     * Get a value
+     * 
+     * @param string  $key    dot seperated key
+     * @param string|null $module the module that this key is part of
+     * @return mixed the vakkue of the key
+     */
     public function getValue($key, $module = false)
     {
         $keys = $this->getKeys($key, $module);
@@ -69,6 +99,13 @@ class Config
         }
     }
 
+    /**
+     * Set a value
+     * 
+     * @param string  $key    dot seperated key
+     * @param mixed  $value  value
+     * @param string|null $module the module that this key is part of
+     */
     public function setValue($key, $value, $module = false)
     {
         $keys = $this->getKeys($key, $module);
